@@ -1,0 +1,24 @@
+{% extends 'jobs/base.html' %}
+
+{% load static %}
+
+{% block title %}
+  My Jobs
+{% endblock %}
+
+{% block content %}
+  <h2>My Jobs</h2>
+  {% if jobs %}
+    {% for job in jobs %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5><a href="{% url 'job_detail' job.pk %}">{{ job.title }}</a></h5>
+          <p>{{ job.company }} — {{ job.location }}</p>
+          <small>Posted on {{ job.posted_at|date:"Y-m-d" }} | Verified: {{ job.verified }}</small>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>You haven't posted any jobs yet.</p>
+  {% endif %}
+{% endblock %}

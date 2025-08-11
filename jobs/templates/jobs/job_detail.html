@@ -1,0 +1,39 @@
+{% extends 'jobs/base.html' %}
+{% block title %}{{ job.title }}{% endblock %}
+
+{% block content %}
+<div class="bg-white p-8 rounded-lg shadow-md border border-gray-100">
+    <div class="flex items-center justify-between">
+        <h1 class="text-3xl font-bold text-blue-600">{{ job.title }}</h1>
+        {% if job.verified %}
+            <span class="px-2 py-0.5 text-xs bg-green-500 text-white rounded-full font-medium">✔ Verified</span>
+        {% endif %}
+    </div>
+    <p class="text-gray-500 text-lg mt-2">{{ job.company }}</p>
+
+    {% if job.category %}
+        <a href="{% url 'category' job.category %}"
+            class="inline-block mt-2 px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition">
+            {{ job.category }}
+        </a>
+
+    {% endif %}
+
+    <p class="text-sm text-gray-400 mt-1">Posted {{ job.posted_at|timesince }} ago</p>
+
+    <hr class="my-6">
+
+    <div class="prose max-w-none break-words whitespace-pre-line">
+        {{ job.description|linebreaks }}
+    </div>
+
+
+
+    <hr class="my-6">
+
+    <a href="mailto:{{ job.contact_email }}" 
+       class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+       Apply Now
+    </a>
+</div>
+{% endblock %}

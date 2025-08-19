@@ -14,7 +14,7 @@
     {% if job.category %}
         <a href="{% url 'category' job.category %}"
             class="inline-block mt-2 px-3 py-1 text-xs bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition">
-            {{ job.category|capitalize }}
+            {{ job.category|title }}
         </a>
 
     {% endif %}
